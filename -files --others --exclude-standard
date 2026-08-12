@@ -1,0 +1,100 @@
+ .gitignore                                         |    Bin [31m340[m -> [32m452[m bytes
+ backend/__pycache__/main.cpython-312.pyc           |    Bin [31m0[m -> [32m4466[m bytes
+ backend/cache/clf_drugs.joblib                     |    Bin [31m0[m -> [32m3935[m bytes
+ backend/cache/clf_effects.joblib                   |    Bin [31m0[m -> [32m10341[m bytes
+ backend/cache/dataset_vocab.json                   |    858 [32m+[m
+ backend/cache/drug_embeddings.npy                  |    Bin [31m0[m -> [32m831104[m bytes
+ backend/cache/drug_index_embeddings.npy            |    Bin [31m0[m -> [32m3016832[m bytes
+ backend/cache/drug_index_list.json                 |      1 [32m+[m
+ backend/cache/drug_list.json                       |      1 [32m+[m
+ backend/cache/train_meta.json                      |      9 [32m+[m
+ backend/hf_cache/CACHEDIR.TAG                      |      4 [32m+[m
+ backend/hf_cache/hub/CACHEDIR.TAG                  |      4 [32m+[m
+ .../added_tokens.json                              |      0
+ .../chat_template.jinja                            |      0
+ .../tokenizer.json                                 |      0
+ .../refs/main                                      |      1 [32m+[m
+ .../config.json                                    |     42 [32m+[m
+ .../model.safetensors                              |    Bin [31m0[m -> [32m669464588[m bytes
+ .../special_tokens_map.json                        |      1 [32m+[m
+ .../tokenizer_config.json                          |      1 [32m+[m
+ .../vocab.txt                                      | 105879 [32m++++++++++++++++[m
+ .../adapter_config.json                            |      0
+ .../added_tokens.json                              |      0
+ .../chat_template.jinja                            |      0
+ .../preprocessor_config.json                       |      0
+ .../processor_config.json                          |      0
+ .../video_preprocessor_config.json                 |      0
+ .../refs/main                                      |      1 [32m+[m
+ .../1_Pooling/config.json                          |      7 [32m+[m
+ .../README.md                                      |    173 [32m+[m
+ .../config.json                                    |     24 [32m+[m
+ .../config_sentence_transformers.json              |      7 [32m+[m
+ .../model.safetensors                              |    Bin [31m0[m -> [32m90868376[m bytes
+ .../modules.json                                   |     20 [32m+[m
+ .../sentence_bert_config.json                      |      4 [32m+[m
+ .../special_tokens_map.json                        |      1 [32m+[m
+ .../tokenizer.json                                 |      1 [32m+[m
+ .../tokenizer_config.json                          |      1 [32m+[m
+ .../vocab.txt                                      |  30522 [32m+++++[m
+ .../added_tokens.json                              |      0
+ .../chat_template.jinja                            |      0
+ .../special_tokens_map.json                        |      0
+ .../refs/main                                      |      1 [32m+[m
+ .../config.json                                    |     22 [32m+[m
+ .../model.safetensors                              |    Bin [31m0[m -> [32m541795680[m bytes
+ .../tokenizer.json                                 |      1 [32m+[m
+ .../tokenizer_config.json                          |      1 [32m+[m
+ .../vocab.txt                                      | 119547 [32m++++++++++++++++++[m
+ .../adapter_config.json                            |      0
+ .../added_tokens.json                              |      0
+ .../chat_template.jinja                            |      0
+ .../preprocessor_config.json                       |      0
+ .../processor_config.json                          |      0
+ .../tokenizer.model                                |      0
+ .../video_preprocessor_config.json                 |      0
+ .../refs/main                                      |      1 [32m+[m
+ .../1_Pooling/config.json                          |      7 [32m+[m
+ .../README.md                                      |    156 [32m+[m
+ .../config.json                                    |     24 [32m+[m
+ .../config_sentence_transformers.json              |      7 [32m+[m
+ .../model.safetensors                              |    Bin [31m0[m -> [32m470641600[m bytes
+ .../modules.json                                   |     14 [32m+[m
+ .../sentence_bert_config.json                      |      4 [32m+[m
+ .../special_tokens_map.json                        |      1 [32m+[m
+ .../tokenizer.json                                 |      1 [32m+[m
+ .../tokenizer_config.json                          |      1 [32m+[m
+ .../xet/logs/xet_20260504T004717936+0100_18644.log |   2125 [32m+[m
+ .../xet/logs/xet_20260504T091522108+0100_23020.log |   3575 [32m+[m
+ backend/main.py                                    |      2 [32m+[m
+ backend/models/delegue_reports_clean_features.csv  |  28953 [32m+++++[m
+ backend/models/visits_ready_clean_FR.csv           |  53847 [32m++++++++[m
+ backend/package-lock.json                          |      6 [32m+[m
+ .../routers/__pycache__/analyze.cpython-312.pyc    |    Bin [31m0[m -> [32m4602[m bytes
+ backend/routers/__pycache__/data.cpython-312.pyc   |    Bin [31m0[m -> [32m2100[m bytes
+ .../__pycache__/integrity_router.cpython-312.pyc   |    Bin [31m0[m -> [32m12378[m bytes
+ backend/routers/__pycache__/ocr.cpython-312.pyc    |    Bin [31m0[m -> [32m1987[m bytes
+ backend/routers/integrity_router.py                |    262 [32m+[m
+ .../services/__pycache__/__init__.cpython-312.pyc  |    Bin [31m0[m -> [32m166[m bytes
+ .../__pycache__/batch_processor.cpython-312.pyc    |    Bin [31m0[m -> [32m10379[m bytes
+ .../__pycache__/chatbot_service.cpython-312.pyc    |    Bin [31m0[m -> [32m85789[m bytes
+ .../__pycache__/coaching_service.cpython-312.pyc   |    Bin [31m0[m -> [32m18342[m bytes
+ .../__pycache__/correcteur_service.cpython-312.pyc |    Bin [31m0[m -> [32m15348[m bytes
+ .../__pycache__/extraction_service.cpython-312.pyc |    Bin [31m0[m -> [32m73960[m bytes
+ .../__pycache__/integrity_control.cpython-312.pyc  |    Bin [31m0[m -> [32m11485[m bytes
+ .../__pycache__/medicaments.cpython-312.pyc        |    Bin [31m0[m -> [32m6930[m bytes
+ .../services/__pycache__/pipeline.cpython-312.pyc  |    Bin [31m0[m -> [32m4886[m bytes
+ .../__pycache__/quality_scorer.cpython-312.pyc     |    Bin [31m0[m -> [32m6235[m bytes
+ .../__pycache__/report_generator.cpython-312.pyc   |    Bin [31m0[m -> [32m9054[m bytes
+ .../__pycache__/text_correction.cpython-312.pyc    |    Bin [31m0[m -> [32m8247[m bytes
+ backend/services/batch_processor.py                |    239 [32m+[m
+ backend/services/correcteur_service.py             |      2 [32m+[m[31m-[m
+ backend/services/integrity_control.py              |    267 [32m+[m
+ backend/services/pipeline.py                       |    116 [32m+[m
+ backend/services/quality_scorer.py                 |    176 [32m+[m
+ backend/services/report_generator.py               |    156 [32m+[m
+ backend/services/text_correction.py                |    208 [32m+[m
+ frontend/package-lock.json                         |     31 [32m+[m[31m-[m
+ frontend/src/api/correcteurApi.js                  |    109 [32m+[m
+ frontend/src/pages/CorrecteurPage.jsx              |    633 [32m+[m[31m-[m
+ 99 files changed, 348037 insertions(+), 20 deletions(-)

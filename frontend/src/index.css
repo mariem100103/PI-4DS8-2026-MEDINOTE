@@ -1,0 +1,1880 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================================================
+   🏥 MEDICAL PROFESSIONAL THEME - MediNote CRM
+   Theme optimisé pour délégués médicaux
+   ================================================================ */
+
+:root {
+  /* 🎨 Palette Principale - Bleu Médical */
+  --medical-primary: #0066CC;
+  --medical-primary-light: #E6F3FF;
+  --medical-primary-medium: #3399FF;
+  --medical-primary-dark: #004499;
+  /* Alias utilisés par les pages React (évite les variables non définies) */
+  --medical-blue: var(--medical-primary);
+  --medical-blue-dark: var(--medical-primary-dark);
+  --medical-gray-200: #dbe4ea;
+
+  /* ⚪ Blancs et Gris Médicaux */
+  --medical-white: #FAFBFC;
+  --medical-gray-50: #F8FAFB;
+  --medical-gray-100: #E1E8ED;
+  --medical-gray-500: #6B7280;
+  --medical-gray-900: #1F2937;
+  
+  /* 🟢 Vert Santé - Actions Positives */
+  --medical-success: #10B981;
+  --medical-success-light: #D1FAE5;
+  
+  /* 🟠 Orange Attention - Actions Urgentes */
+  --medical-warning: #F59E0B;
+  --medical-danger: #EF4444;
+  --medical-danger-light: #FEE2E2;
+  
+  /* 🎯 Spécifiques Délégués */
+  --delegate-accent: #0EA5E9;
+  --delegate-hover: #0284C7;
+  --visit-primary: #0891B2;
+  --report-primary: #059669;
+  
+  /* 📱 Ombres et Effets */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 102, 204, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 102, 204, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 102, 204, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 102, 204, 0.1);
+  
+  /* 🔄 Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+    min-height: 100vh;
+    background: var(--medical-gray-50);
+    color: var(--medical-gray-900);
+    line-height: 1.6;
+}
+
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-body {
+    flex: 1;
+    min-height: 0;
+}
+
+.navbar-left-compact {
+    flex: 0 1 auto;
+    min-width: 0;
+    gap: 16px;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+    background: var(--medical-white);
+    border-bottom: 1px solid var(--medical-gray-100);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    min-width: 0;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.navbar-user-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-quick-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-control {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+}
+
+.quick-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    min-height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--medical-gray-100);
+    background: var(--medical-white);
+    color: var(--medical-gray-500);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-action-btn:hover {
+    background: var(--medical-primary-light);
+    border-color: var(--medical-primary-medium);
+    color: var(--medical-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.quick-action-btn.admin {
+    border-color: var(--medical-success-light);
+    color: var(--medical-success);
+    background: var(--medical-white);
+}
+
+.quick-action-btn.admin:hover {
+    background: var(--medical-success-light);
+    border-color: var(--medical-success);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--medical-gray-900);
+    padding: 8px 14px;
+    background: var(--medical-primary-light);
+    border-radius: 10px;
+    border: 1px solid var(--medical-primary-medium);
+    transition: var(--transition-fast);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 12px;
+    border-left: 1px solid #e2e8f0;
+}
+
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    min-height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--medical-danger-light);
+    background: var(--medical-white);
+    color: var(--medical-danger);
+    font-size: 13px;
+    font-weight: 500;
+    transition: var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.logout-btn:hover {
+    background: var(--medical-danger);
+    border-color: var(--medical-danger);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ================================================================
+   🎨 COMPOSANTS THEMES POUR PAGES PRINCIPALES
+   ================================================================ */
+
+/* Cards médicaux */
+.medical-card {
+    background: var(--medical-white);
+    border: 1px solid var(--medical-gray-100);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.medical-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* Boutons principaux */
+.btn-primary {
+    background: var(--medical-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    background: var(--medical-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-success {
+    background: var(--medical-success);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-success:hover {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Sections de contenu */
+.content-section {
+    background: var(--medical-white);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--medical-gray-100);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--medical-gray-900);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Grilles responsives */
+.medical-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+}
+
+/* Statistiques */
+.stat-card {
+    background: linear-gradient(135deg, var(--medical-primary), var(--medical-primary-medium));
+    color: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(30px, -30px);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* Formulaires médicaux */
+.medical-form {
+    background: var(--medical-white);
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--medical-gray-100);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: var(--medical-gray-900);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--medical-gray-100);
+    border-radius: 10px;
+    font-size: 14px;
+    transition: var(--transition-normal);
+    background: var(--medical-white);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--medical-primary);
+    box-shadow: 0 0 0 3px var(--medical-primary-light);
+}
+
+/* Alertes */
+.alert {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: var(--medical-success-light);
+    color: var(--medical-success);
+    border: 1px solid var(--medical-success);
+}
+
+.alert-warning {
+    background: #FEF3C7;
+    color: #D97706;
+    border: 1px solid #F59E0B;
+}
+
+.alert-danger {
+    background: var(--medical-danger-light);
+    color: var(--medical-danger);
+    border: 1px solid var(--medical-danger);
+}
+
+/* ================================================================
+   🔄 WRAPPER THEME POUR TAILWIND - Application automatique
+   ================================================================ */
+
+/* Remplacer les classes Tailwind par notre thème médical */
+.bg-gray-50 { background-color: var(--medical-gray-50) !important; }
+.bg-white { background-color: var(--medical-white) !important; }
+.bg-slate-50 { background-color: var(--medical-gray-50) !important; }
+.bg-blue-50 { background-color: var(--medical-primary-light) !important; }
+.bg-emerald-50 { background-color: var(--medical-success-light) !important; }
+.bg-rose-50 { background-color: var(--medical-danger-light) !important; }
+.bg-green-50 { background-color: var(--medical-success-light) !important; }
+.bg-red-50 { background-color: var(--medical-danger-light) !important; }
+
+.text-gray-900 { color: var(--medical-gray-900) !important; }
+.text-slate-900 { color: var(--medical-gray-900) !important; }
+.text-gray-700 { color: var(--medical-gray-500) !important; }
+.text-slate-700 { color: var(--medical-gray-500) !important; }
+.text-gray-600 { color: var(--medical-gray-500) !important; }
+.text-slate-600 { color: var(--medical-gray-500) !important; }
+.text-gray-500 { color: var(--medical-gray-500) !important; }
+.text-slate-500 { color: var(--medical-gray-500) !important; }
+.text-blue-600 { color: var(--medical-primary) !important; }
+.text-green-600 { color: var(--medical-success) !important; }
+.text-red-600 { color: var(--medical-danger) !important; }
+
+.border-gray-200 { border-color: var(--medical-gray-100) !important; }
+.border-slate-200 { border-color: var(--medical-gray-100) !important; }
+.border-gray-300 { border-color: var(--medical-gray-100) !important; }
+.border-slate-300 { border-color: var(--medical-gray-100) !important; }
+.border-blue-200 { border-color: var(--medical-primary-medium) !important; }
+.border-green-200 { border-color: var(--medical-success) !important; }
+.border-red-200 { border-color: var(--medical-danger) !important; }
+.border-emerald-200 { border-color: var(--medical-success) !important; }
+.border-rose-200 { border-color: var(--medical-danger) !important; }
+
+/* Classes spécifiques pour la page Persona */
+.border-emerald-200.bg-emerald-50 {
+    background-color: var(--medical-success-light) !important;
+    border-color: var(--medical-success) !important;
+}
+
+.border-rose-200.bg-rose-50 {
+    background-color: var(--medical-danger-light) !important;
+    border-color: var(--medical-danger) !important;
+}
+
+/* Classes ALIA spécifiques */
+.focus\:border-alia-primary-500:focus {
+    border-color: var(--medical-primary) !important;
+    box-shadow: 0 0 0 3px var(--medical-primary-light) !important;
+}
+
+.accent-alia-primary-600 {
+    accent-color: var(--medical-primary) !important;
+}
+
+/* Améliorer les cards existantes */
+.bg-white.border.border-gray-200.rounded-xl {
+    background-color: var(--medical-white) !important;
+    border: 1px solid var(--medical-gray-100) !important;
+    border-radius: 16px !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* Améliorer les inputs et selects */
+.w-full.rounded-lg.border.border-slate-300 {
+    background-color: var(--medical-white) !important;
+    border: 2px solid var(--medical-gray-100) !important;
+    border-radius: 10px !important;
+    color: var(--medical-gray-900) !important;
+    padding: 12px 16px !important;
+    transition: var(--transition-normal) !important;
+}
+
+.w-full.rounded-lg.border.border-slate-300:focus {
+    border-color: var(--medical-primary) !important;
+    box-shadow: 0 0 0 3px var(--medical-primary-light) !important;
+    outline: none !important;
+}
+
+.block.w-full.text-sm.text-gray-600 {
+    color: var(--medical-gray-900) !important;
+    background-color: var(--medical-white) !important;
+    border: 2px solid var(--medical-gray-100) !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    transition: var(--transition-normal) !important;
+}
+
+.block.w-full.text-sm.text-gray-600:focus {
+    border-color: var(--medical-primary) !important;
+    box-shadow: 0 0 0 3px var(--medical-primary-light) !important;
+    outline: none !important;
+}
+
+/* Améliorer les boutons */
+.bg-blue-600.hover\:bg-blue-700 {
+    background-color: var(--medical-primary) !important;
+}
+
+.bg-blue-600.hover\:bg-blue-700:hover {
+    background-color: var(--medical-primary-dark) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Améliorer les alertes */
+.bg-red-50.border.border-red-200 {
+    background-color: var(--medical-danger-light) !important;
+    border-color: var(--medical-danger) !important;
+}
+
+.text-red-700 {
+    color: var(--medical-danger) !important;
+}
+
+.bg-green-50.border.border-green-200 {
+    background-color: var(--medical-success-light) !important;
+    border-color: var(--medical-success) !important;
+}
+
+.text-green-700 {
+    color: var(--medical-success) !important;
+}
+
+/* Amélioration globale des formulaires */
+.max-w-5xl.space-y-5.rounded-xl.border.border-slate-200.bg-white.p-6.shadow-sm {
+    background-color: var(--medical-white) !important;
+    border: 1px solid var(--medical-gray-100) !important;
+    border-radius: 16px !important;
+    box-shadow: var(--shadow-md) !important;
+    padding: 32px !important;
+}
+
+.mx-auto.max-w-7xl {
+    max-width: 1400px !important;
+    padding: 0 24px !important;
+}
+
+/* Amélioration des grilles */
+.grid.gap-4.md\:grid-cols-2 {
+    gap: 24px !important;
+}
+
+/* Labels */
+.mb-2.block.text-sm.font-medium.text-slate-700 {
+    color: var(--medical-gray-900) !important;
+    font-weight: 600 !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+}
+
+/* Range inputs */
+.w-full.accent-alia-primary-600 {
+    accent-color: var(--medical-primary) !important;
+}
+
+/* ================================================================
+   🎨 OVERRIDES SUPPLÉMENTAIRES — Classes Tailwind manquantes
+   pour CoachingPage et autres pages utilisant amber/green foncés
+   ================================================================ */
+
+/* Amber → mappé vers warning du thème medical */
+.bg-amber-50 { background-color: #FEF3C7 !important; }
+.bg-amber-100 { background-color: #FDE68A !important; }
+.border-amber-300 { border-color: var(--medical-warning) !important; }
+.border-amber-400 { border-color: var(--medical-warning) !important; }
+.border-amber-500 { border-color: #D97706 !important; }
+.text-amber-700 { color: #D97706 !important; }
+.text-amber-800 { color: #B45309 !important; }
+.text-amber-900 { color: #78350F !important; }
+
+/* Green/Emerald foncés non couverts */
+.text-green-700 { color: #047857 !important; }
+.text-green-800 { color: #065F46 !important; }
+.text-green-900 { color: #064E3B !important; }
+.border-green-400 { border-color: var(--medical-success) !important; }
+.border-green-500 { border-color: #059669 !important; }
+.border-green-600 { border-color: #047857 !important; }
+.bg-green-100 { background-color: #DCFCE7 !important; }
+
+/* Blue foncés non couverts */
+.text-blue-700 { color: var(--medical-primary-dark) !important; }
+.text-blue-800 { color: #1E3A8A !important; }
+.text-blue-900 { color: #1E3A5F !important; }
+.bg-blue-100 { background-color: #DBEAFE !important; }
+.bg-blue-600 { background-color: var(--medical-primary) !important; }
+.bg-blue-700 { background-color: var(--medical-primary-dark) !important; }
+.border-blue-300 { border-color: var(--medical-primary-medium) !important; }
+.border-blue-400 { border-color: var(--medical-primary-medium) !important; }
+.border-blue-500 { border-color: var(--medical-primary) !important; }
+
+/* Purple → mappé vers primary medical pour cohérence */
+.bg-purple-50 { background-color: var(--medical-primary-light) !important; }
+.bg-purple-600 { background-color: var(--medical-primary) !important; }
+.bg-purple-700 { background-color: var(--medical-primary-dark) !important; }
+.text-purple-600 { color: var(--medical-primary) !important; }
+.text-purple-700 { color: var(--medical-primary-dark) !important; }
+.border-purple-200 { border-color: var(--medical-primary-medium) !important; }
+.border-purple-300 { border-color: var(--medical-primary-medium) !important; }
+
+/* Sky → mappé vers primary medical */
+.bg-sky-50 { background-color: var(--medical-primary-light) !important; }
+.bg-sky-600 { background-color: var(--medical-primary) !important; }
+.bg-sky-700 { background-color: var(--medical-primary-dark) !important; }
+.text-sky-600 { color: var(--medical-primary) !important; }
+.text-sky-700 { color: var(--medical-primary-dark) !important; }
+.border-sky-200 { border-color: var(--medical-primary-medium) !important; }
+
+/* Indigo → mappé vers primary medical */
+.bg-indigo-50 { background-color: var(--medical-primary-light) !important; }
+.bg-indigo-600 { background-color: var(--medical-primary) !important; }
+.text-indigo-600 { color: var(--medical-primary) !important; }
+.text-indigo-700 { color: var(--medical-primary-dark) !important; }
+
+/* Rose/Red foncés non couverts */
+.text-rose-600 { color: var(--medical-danger) !important; }
+.text-rose-700 { color: #B91C1C !important; }
+.bg-rose-100 { background-color: #FEE2E2 !important; }
+.border-rose-300 { border-color: var(--medical-danger) !important; }
+.border-rose-400 { border-color: var(--medical-danger) !important; }
+.border-rose-500 { border-color: #DC2626 !important; }
+
+/* ================================================================
+   🌑 FONDS "SOMBRES" — transformés en bleu medical foncé
+   pour garder l'effet "card highlight" mais dans le thème médical
+   (PersonaCard SectionCard tone="dark", Sidebar, AdminDashboard,
+   FollowUp, CorrecteurPage, ImageToReport, ui.jsx KpiCard/PrimaryButton)
+   ================================================================ */
+
+/* Slate foncés Tailwind par défaut */
+.bg-slate-900 { background-color: var(--medical-primary-dark) !important; }
+.bg-slate-800 { background-color: var(--medical-primary) !important; }
+.bg-slate-700 { background-color: #1E40AF !important; }
+.hover\:bg-slate-900:hover { background-color: var(--medical-primary-dark) !important; }
+.hover\:bg-slate-800:hover { background-color: var(--medical-primary) !important; }
+.border-slate-700 { border-color: var(--medical-primary-dark) !important; }
+.text-slate-50  { color: #FFFFFF !important; }
+.text-slate-100 { color: #F0F8FF !important; }
+.text-slate-300 { color: #E0E8F0 !important; }
+
+/* Gray foncés Tailwind par défaut */
+.bg-gray-900 { background-color: var(--medical-primary-dark) !important; }
+.bg-gray-800 { background-color: var(--medical-primary) !important; }
+.bg-gray-700 { background-color: #1E40AF !important; }
+.hover\:bg-gray-900:hover { background-color: var(--medical-primary-dark) !important; }
+.hover\:bg-gray-800:hover { background-color: var(--medical-primary) !important; }
+
+/* Overlays slate (bg-slate-900/40 = noir 40%) */
+.bg-slate-900\/40 { background-color: rgba(0, 102, 204, 0.40) !important; }
+.bg-slate-900\/60 { background-color: rgba(0, 102, 204, 0.60) !important; }
+
+/* Palette ALIA personnalisée (tailwind.config.js) → mappée vers medical */
+.bg-alia-primary-50  { background-color: var(--medical-primary-light) !important; }
+.bg-alia-primary-100 { background-color: var(--medical-primary-light) !important; }
+.bg-alia-primary-600 { background-color: var(--medical-primary) !important; }
+.bg-alia-primary-700 { background-color: var(--medical-primary-dark) !important; }
+.bg-alia-primary-800 { background-color: var(--medical-primary-dark) !important; }
+.bg-alia-primary-900 { background-color: var(--medical-primary-dark) !important; }
+.hover\:bg-alia-primary-700:hover { background-color: var(--medical-primary-dark) !important; }
+.hover\:bg-alia-primary-800:hover { background-color: var(--medical-primary-dark) !important; }
+.text-alia-primary-600 { color: var(--medical-primary) !important; }
+.text-alia-primary-700 { color: var(--medical-primary-dark) !important; }
+.text-alia-primary-800 { color: var(--medical-primary-dark) !important; }
+.border-alia-primary-100 { border-color: var(--medical-primary-medium) !important; }
+.border-alia-primary-200 { border-color: var(--medical-primary-medium) !important; }
+.border-alia-primary-500 { border-color: var(--medical-primary) !important; }
+
+.bg-alia-secondary-600 { background-color: var(--medical-primary) !important; }
+.bg-alia-secondary-700 { background-color: var(--medical-primary-dark) !important; }
+.bg-alia-secondary-800 { background-color: var(--medical-primary-dark) !important; }
+.hover\:bg-alia-secondary-700:hover { background-color: var(--medical-primary-dark) !important; }
+.hover\:bg-alia-secondary-800:hover { background-color: var(--medical-primary-dark) !important; }
+
+/* Gradients (from-* / to-*) — pour homogénéiser les bg-gradient-to-r/br */
+.from-alia-primary-700 { --tw-gradient-from: var(--medical-primary-dark) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0,68,153,0)) !important; }
+.from-alia-primary-800 { --tw-gradient-from: var(--medical-primary-dark) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0,68,153,0)) !important; }
+.from-alia-primary-900 { --tw-gradient-from: var(--medical-primary-dark) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0,68,153,0)) !important; }
+.to-alia-primary-800 { --tw-gradient-to: var(--medical-primary-dark) !important; }
+.to-alia-secondary-700 { --tw-gradient-to: var(--medical-primary) !important; }
+.to-alia-secondary-800 { --tw-gradient-to: var(--medical-primary-dark) !important; }
+
+/* Orange (PersonaCard "Faible engagement") — alignement warning medical */
+.bg-orange-50  { background-color: #FEF3C7 !important; }
+.bg-orange-100 { background-color: #FED7AA !important; }
+.border-orange-200 { border-color: var(--medical-warning) !important; }
+.border-orange-300 { border-color: var(--medical-warning) !important; }
+.text-orange-600 { color: var(--medical-warning) !important; }
+.text-orange-700 { color: #D97706 !important; }
+.text-orange-800 { color: #B45309 !important; }
+
+.mt-1.text-sm.text-slate-600 {
+    color: var(--medical-gray-500) !important;
+    margin-top: 8px !important;
+}
+
+/* Sections */
+.mt-6.max-w-5xl.space-y-5 {
+    margin-top: 32px !important;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .navbar-links {
+        gap: 4px;
+    }
+    
+    .navbar-link {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .medical-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .content-section {
+        padding: 20px;
+        margin-bottom: 16px;
+    }
+    
+    .medical-card {
+        padding: 16px;
+    }
+    
+    .navbar {
+        padding: 8px 16px;
+    }
+    
+    .navbar-left {
+        gap: 12px;
+    }
+    
+    .navbar-link {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .max-w-5xl.space-y-5.rounded-xl.border.border-slate-200.bg-white.p-6.shadow-sm {
+        padding: 20px !important;
+    }
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.navbar-logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #5b7bff, #00c9a7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 2px 8px rgba(91, 123, 255, 0.25);
+}
+
+.navbar-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.navbar-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--medical-primary-dark);
+    letter-spacing: -0.3px;
+    transition: var(--transition-fast);
+}
+
+.navbar-subtitle {
+    margin-top: 2px;
+    font-size: 10px;
+    color: var(--medical-gray-500);
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    flex: 1 1 0%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding: 0 8px;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.navbar-link {
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: var(--medical-gray-900);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.3);
+    min-width: fit-content;
+    flex-shrink: 0;
+}
+
+.navbar-link:hover {
+    background: var(--medical-primary-light);
+    color: var(--medical-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-link.active {
+    background: var(--medical-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.app-main {
+    padding: 28px;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+        padding: 8px 14px;
+    }
+    .navbar-links {
+        flex: 1 1 0%;
+        min-width: 0;
+    }
+    .navbar-link {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+    .app-main {
+        padding: 18px;
+    }
+}
+
+:root {
+    /* 🔄 Alias unifiés vers la palette Medical Professional Blue */
+    --bg: var(--medical-gray-50);
+    --card: var(--medical-white);
+    --text: var(--medical-gray-900);
+    --muted: var(--medical-gray-500);
+    --border: var(--medical-gray-100);
+    --border-dark: #B8C5CF;
+    --primary: var(--medical-primary);
+    --primary-dark: var(--medical-primary-dark);
+    --success: var(--medical-success);
+    --success-dark: #059669;
+    --danger: var(--medical-danger);
+    --danger-dark: #DC2626;
+    --warning: var(--medical-warning);
+    --warning-dark: #D97706;
+    --dark: var(--medical-gray-900);
+    --pdf: var(--medical-primary-dark);
+    --pdf-dark: var(--medical-gray-900);
+    --shadow: 0 8px 24px rgba(0, 102, 204, 0.10);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    min-height: 58px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.nav-title {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    font-weight: 600;
+}
+
+.nav-links a {
+    color: #334155;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+
+/* PAGE */
+
+.page {
+    padding: 32px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.rapport-page {
+    max-width: 1560px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.rapport-header {
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.page-header p {
+    color: var(--muted);
+    margin-top: 8px;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.header-badge {
+    background: #eef2ff;
+    color: #3730a3;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+/* Hide old label if it still exists in old JSX */
+
+.ai-label {
+    display: none;
+}
+
+
+/* STEPS */
+
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 32px;
+}
+
+.professional-steps {
+    margin-bottom: 28px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+}
+
+.step-circle.active {
+    background: var(--success);
+}
+
+.step-line {
+    height: 2px;
+    width: 86px;
+    background: var(--border-dark);
+}
+
+
+/* LAYOUT */
+
+.three-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.08fr);
+    gap: 22px;
+    align-items: stretch;
+}
+
+.rapport-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.08fr);
+    gap: 22px;
+    align-items: stretch;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 22px;
+}
+
+.workflow-card {
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 18px;
+    color: #111827;
+}
+
+.card h3 {
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+
+.card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-description {
+    margin-top: 8px;
+    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* UPLOAD */
+
+.file-input {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.upload-zone {
+    display: block;
+    border: 1px dashed #94a3b8;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    margin-bottom: 14px;
+    transition: 0.2s ease;
+}
+
+.upload-zone:hover {
+    background: #f1f5f9;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.preview-box {
+    height: 455px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #f8fafc;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-box p {
+    color: #94a3b8;
+    text-align: center;
+    padding: 16px;
+}
+
+.preview-image,
+.preview-pdf {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: none;
+}
+
+
+/* EXTRACTED TEXT */
+
+.text-editor {
+    width: 100%;
+    height: 455px;
+    resize: none;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    outline: none;
+    background: white;
+    line-height: 1.5;
+}
+
+.text-editor:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* REPORT PREVIEW */
+
+.report-preview-container {
+    height: 455px;
+    overflow: auto;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    flex: 1;
+}
+
+.empty-text {
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 180px;
+}
+
+
+/* BUTTONS */
+
+.btn {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 16px;
+    margin-top: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 14px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+.secondary {
+    background: white;
+    border: 1px solid var(--border);
+    color: #334155;
+}
+
+.secondary:hover:not(:disabled) {
+    background: #f8fafc;
+}
+
+.purple {
+    background: var(--primary);
+    color: white;
+}
+
+.dark {
+    background: var(--dark);
+    color: white;
+}
+
+.success {
+    background: var(--success);
+    color: white;
+}
+
+.success:hover:not(:disabled) {
+    background: var(--success-dark);
+}
+
+.danger {
+    background: var(--danger);
+    color: white;
+}
+
+.pdf-btn {
+    background: var(--pdf);
+    color: white;
+}
+
+.pdf-btn:hover:not(:disabled) {
+    background: var(--pdf-dark);
+}
+
+.action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.professional-actions {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.small-btn {
+    border: 1px solid var(--border);
+    background: white;
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s ease;
+}
+
+.small-btn:hover {
+    background: #f8fafc;
+}
+
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-left: 5px solid var(--success);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+    padding: 14px 18px;
+    border-radius: 12px;
+    z-index: 100;
+    max-width: 420px;
+    font-weight: 600;
+}
+
+
+/* FORM */
+
+.form-section {
+    margin-top: 28px;
+}
+
+.section-header {
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    margin-bottom: 4px;
+}
+
+.section-header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.field {
+    display: block;
+    margin-top: 14px;
+}
+
+.field span {
+    display: block;
+    margin-bottom: 6px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.field textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.product-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+
+/* PDF-LIKE REPORT DOCUMENT */
+
+.rapport-document {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    margin: auto;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.16);
+}
+
+.rapport-document h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 28px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.info-box {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.info-box span {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.info-box strong {
+    display: block;
+    margin-top: 4px;
+}
+
+.rapport-section {
+    margin-bottom: 20px;
+}
+
+.rapport-section h2 {
+    font-size: 18px;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 6px;
+}
+
+.rapport-section table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.rapport-section th,
+.rapport-section td {
+    border: 1px solid var(--border-dark);
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.rapport-section th {
+    background: #f1f5f9;
+}
+
+
+/* HISTORY PAGE */
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 980px;
+}
+
+.history-table th,
+.history-table td {
+    border-bottom: 1px solid var(--border);
+    padding: 14px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.history-table th {
+    background: #f8fafc;
+    color: #334155;
+    font-size: 14px;
+}
+
+.history-table td {
+    font-size: 14px;
+}
+
+.card:has(.history-table) {
+    overflow-x: auto;
+}
+
+.status {
+    background: #dcfce7;
+    color: #166534;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.source-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.table-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cell-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s ease;
+    white-space: nowrap;
+}
+
+.icon-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.icon-btn.success {
+    background: var(--success);
+    color: white;
+}
+
+.icon-btn.danger {
+    background: var(--danger);
+    color: white;
+}
+
+.icon-btn.warning {
+    background: var(--warning);
+    color: white;
+}
+
+.icon-btn.warning:hover {
+    background: var(--warning-dark);
+}
+
+.icon-btn.pdf {
+    background: #7c3aed;
+    color: white;
+}
+
+.icon-btn.pdf:hover {
+    background: #6d28d9;
+}
+
+.empty-row {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+}
+
+
+/* PRINT PDF */
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-report,
+    #print-report * {
+        visibility: visible;
+    }
+    #print-report {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 210mm;
+        min-height: 297mm;
+        box-shadow: none;
+    }
+    .navbar,
+    .toast,
+    .btn,
+    .small-btn,
+    .header-badge,
+    .icon-btn {
+        display: none !important;
+    }
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .three-columns,
+    .rapport-workspace {
+        grid-template-columns: 1fr;
+    }
+    .workflow-card {
+        min-height: auto;
+    }
+    .preview-box,
+    .text-editor,
+    .report-preview-container {
+        height: 420px;
+    }
+}
+
+@media (max-width: 800px) {
+    .page {
+        padding: 20px;
+    }
+    .navbar {
+        padding: 0 20px;
+        gap: 20px;
+    }
+    .nav-links {
+        gap: 14px;
+        font-size: 14px;
+    }
+    .page-header {
+        flex-direction: column;
+    }
+    .steps {
+        gap: 10px;
+    }
+    .step-line {
+        width: 38px;
+    }
+    .step span {
+        font-size: 13px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .professional-actions {
+        grid-template-columns: 1fr;
+    }
+    .rapport-document {
+        width: 100%;
+        padding: 20px;
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(180deg, var(--medical-primary-light) 0%, var(--medical-gray-50) 55%, var(--medical-white) 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* ================================================================
+   Mode sombre (classe .dark sur <html> — ThemeContext)
+   ================================================================ */
+html.dark {
+    color-scheme: dark;
+    --medical-primary: #38bdf8;
+    --medical-primary-light: rgba(56, 189, 248, 0.14);
+    --medical-primary-medium: #7dd3fc;
+    --medical-primary-dark: #0ea5e9;
+    --medical-blue: var(--medical-primary);
+    --medical-blue-dark: var(--medical-primary-dark);
+    --medical-gray-200: #475569;
+    --medical-white: #1e293b;
+    --medical-gray-50: #0f172a;
+    --medical-gray-100: #334155;
+    --medical-gray-500: #94a3b8;
+    --medical-gray-900: #f1f5f9;
+    --medical-success: #34d399;
+    --medical-success-light: rgba(52, 211, 153, 0.18);
+    --medical-warning: #fbbf24;
+    --medical-danger: #f87171;
+    --medical-danger-light: rgba(248, 113, 113, 0.18);
+    --delegate-accent: #38bdf8;
+    --delegate-hover: #0ea5e9;
+    --visit-primary: #22d3ee;
+    --report-primary: #34d399;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.45);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --border-dark: #475569;
+    --primary: #38bdf8;
+    --primary-dark: #0ea5e9;
+    --success: #34d399;
+    --success-dark: #10b981;
+    --danger: #f87171;
+    --danger-dark: #ef4444;
+    --warning: #fbbf24;
+    --warning-dark: #f59e0b;
+    --dark: #f8fafc;
+    --pdf: #38bdf8;
+    --pdf-dark: #e2e8f0;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+html.dark body {
+    background: linear-gradient(
+        180deg,
+        #0c1222 0%,
+        #0f172a 45%,
+        #1e293b 100%
+    );
+    color: var(--text);
+}
+
+html.dark .navbar {
+    background: var(--medical-white) !important;
+    border-bottom-color: var(--medical-gray-100) !important;
+}
+
+html.dark .navbar-actions {
+    border-left-color: var(--border) !important;
+}
+
+html.dark .navbar-title {
+    color: var(--medical-gray-900);
+}
+
+html.dark .nav-links a {
+    color: var(--muted);
+}
+
+html.dark .page-header h1,
+html.dark .card h2 {
+    color: var(--text);
+}
+
+html.dark .upload-zone {
+    background: var(--medical-gray-50);
+    border-color: var(--border);
+    color: var(--text);
+}
+
+html.dark .upload-zone:hover {
+    background: var(--medical-white);
+}
+
+html.dark .preview-box,
+html.dark .report-preview-container {
+    background: var(--medical-gray-50);
+}
+
+html.dark .text-editor {
+    background: var(--medical-white);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+html.dark .rapport-document {
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .rapport-section th {
+    background: var(--medical-white);
+    color: var(--text);
+}
+
+html.dark .history-table th {
+    background: var(--medical-white);
+    color: var(--muted);
+}
+
+html.dark .toast {
+    background: var(--card);
+    color: var(--text);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .secondary {
+    background: var(--medical-white);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+html.dark .secondary:hover:not(:disabled) {
+    background: var(--medical-gray-50);
+}
+
+html.dark .small-btn {
+    background: var(--medical-white);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+html.dark .small-btn:hover {
+    background: var(--medical-gray-50);
+}
+
+html.dark .header-badge {
+    background: var(--medical-primary-light);
+    color: var(--medical-primary-medium);
+}
+
+html.dark ::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}

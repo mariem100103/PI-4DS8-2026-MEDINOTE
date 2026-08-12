@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Storage
+backend/storage/uploads/*
+backend/storage/xlsx/*
+backend/storage/database.db
+
+# keep folders
+!backend/storage/uploads/.gitkeep
+!backend/storage/xlsx/.gitkeep
+
+# React
+node_modules/
+dist/
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
